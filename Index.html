@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html ng-app="CRECApp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>朋友圈</title>
+    <link href="./css/amazeui.css" rel="stylesheet" />
+    <link href="./css/Iscoll.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="./css/jquery.fancybox.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/Index.css">
+</head>
+<body ng-controller="FriendCircleController">
+    <header data-am-widget="header" class="am-header am-header-default" ng-show="Header.IsShow" style="z-index:100;position:fixed;top:0px">
+        <h1 class="am-header-title">
+            {{Header.Title}}
+        </h1>
+    </header>
+   
+    <div id="wrapper">
+        <div id="scroller">
+            <div class="banner">
+                <img src="http://img.d9soft.com/2015/0526/20150526100410406.jpg" />
+                <div class="userName" ng-bind="currentPerson.NickName">
+                </div>
+                <div class="userLogo">
+                    <img ng-src="{{currentPerson.Headimgurl}}" />
+                </div>
+            </div>
+            <ul class="scroll-ul">
+                <li ng-repeat="item in List" on-repeat-finished-render>
+                    <div class="am-u-sm-2">
+                        <img ng-src="{{item.WriterInfo.Headimgurl}}" style="width:100%;" />
+                    </div>
+                    <div class="am-u-sm-10 item-content">
+                        <div class="item-username">{{item.WriterInfo.NickName}}</div>
+                        <div>{{item.ContentText}}</div>
+                        <div>
+                            <div class="item-time am-u-sm-6" style="margin-left:0;padding-left:0px">
+                                {{DateString(item.CreatedTime)}}
+                            </div>
+                            <div class="am-u-sm-6 am-text-right item-time-right">
+                                <i dbid="{{item.Id}}" class="am-icon-bars" ng-click="ClickOperation($event)"></i>
+                            </div>
+                            <div class="item-operation">
+                                <div class="am-u-sm-6" ng-click="ClickZan(item)"><i ng-class="{true: 'am-icon-heart', false: 'am-icon-heart-o'}[!!item.IsZan]"></i>&nbsp;赞</div>
+                                <div class="am-u-sm-6" ng-click="ClickComment(item)"><i class="am-icon-comment-o"></i>&nbsp;评论</div>
+                                <div style="clear:both;"></div>
+                            </div>
+                            <div style="clear:both;"></div>
+                        </div>
+                        <div class="item-image" ng-show="item.Images.length>0">
+                            <div ng-if="item.Images.length==1">
+                                <a href="{{ImgDomain+item.Images[0].ImgUrl}}" data-fancybox data-caption="">
+                                    <img class="item-img-only" ng-src="{{ImgDomain+item.Images[0].ImgUrl}}" ng-click="SeeBigImg($event)" />
+                                </a>
+                            </div>
+                            <div ng-if="item.Images.length>1">
+                                <div ng-repeat="img in item.Images" class="item-img-many" ng-click="SeeBigImg($event)" ng-style="{'background-image' : 'url({{ImgDomain+img.ImgUrl}})'}">
+                                    <a href="{{ImgDomain+img.ImgUrl}}" style="display:block" data-fancybox="group">
+                                        <img class="item-img-only" style="visibility:hidden" ng-src="{{ImgDomain+img.ImgUrl}}" ng-click="SeeBigImg($event)" />
+                                    </a>
+                                </div>
+                                <!--<img ng-src="{{ImgDomain+img.ImgUrl}}"/>-->
+                            </div>
+                        </div>
+                        <div class="item-praise" ng-show="item.Praises.length>0">
+                            <i class="am-icon-heart-o"></i>
+                            <span ng-repeat="person in item.Praises">{{person.NickName}},</span>
+                        </div>
+                        <div class="item-comment" ng-show="item.Comments.length>0">
+                            <div ng-repeat="comment in item.Comments" ng-click="ClickComment(item,comment)">
+                                {{comment.NickName}}<span ng-if="comment.SayTo"><span class="color-black"> 回复 </span>{{comment.SayTo.NickName}}</span>：<span class="color-black">{{comment.ContentText}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear:both;"></div>
+                </li>
+            </ul>
+            <div ng-show="!hasMoreOld" style="text-align: center;line-height: 30px;color: gray;padding-bottom: 10px;">
+                没有更多了
+            </div>
+        </div>
+    </div>
+    <div class="comment-input">
+        <div class="am-u-sm-10">
+            <input id="commentText" placeholder="评论" />
+        </div>
+        <div class="am-u-sm-2" ng-click="SubmitComment()">
+            发送
+        </div>
+    </div>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/amazeui.js"></script>
+    <script src="./js/angular.min.js"></script>
+    <script src="./js/iscroll-new.js"></script>
+    <script src="./js/underscore-min.js"></script>
+    <script src="./js/jquery.fancybox.min.js"></script>
+    <script src="./js/Index.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
