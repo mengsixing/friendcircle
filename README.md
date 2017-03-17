@@ -11,4 +11,4 @@
 1、直接Download，运行Index.html<br>
 <br>
 演示地址<br>
-http://www.yhlmmm.com/Index.html<br>
+http://www.yhlmmm.com/friendcircle/Index.html<br>
