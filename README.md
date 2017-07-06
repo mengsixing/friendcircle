@@ -1,14 +1,14 @@
-# ɽկ������Ȧ<br>
+# 简易版朋友圈<br>
 <br>
-ʹ�ü���<br>
-1��Angular 1.X�汾������<br>
-2��AmazeUI ʵ�ֲ��ֲ���<br>
-3��Iscroll �Ż�����<br>
-4��Jquery.fancybox ͼƬ�鿴���鿴����Сbug��<br>
-5��Underscore��Jquery���߿�<br>
+使用技术<br>
+1、Angular 1.X版本绑定数据<br>
+2、AmazeUI 实现部分布局<br>
+3、Iscroll 优化滚动<br>
+4、Jquery.fancybox 图片查看（查看器有小bug）<br>
+5、Underscore，Jquery工具库<br>
 <br>
-��װ����<br>
-1��ֱ��Download������Index.html<br>
+安装方法<br>
+1、直接Download，运行Index.html<br>
 <br>
-��ʾ��ַ<br>
+演示地址<br>
 http://www.yhlmmm.com/friendcircle/Index.html<br>
